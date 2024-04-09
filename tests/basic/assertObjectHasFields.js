@@ -7,7 +7,7 @@ var f = $$.flow.describe("assertObjectHasFields",{
         for (var i = 0; i < this.testData.length; i++) {
             assert.objectHasFields(this.testData[i], this.testData[i+1]);
             i+=1;
-        };
+        }
         this.cb();
     }
 })();

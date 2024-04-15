@@ -1,5 +1,5 @@
 const assert = require("../../lib/checksCore").assert;
-var f = $$.flow.describe("assertCallbackNoName",{
+const f = $$.flow.describe("assertCallbackNoName",{
     action:function(cb){
         this.cb = cb;
         this.cb();

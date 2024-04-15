@@ -1,6 +1,6 @@
-var assert = require('../../../../../double-check').assert;
+const assert = require('../../../../../double-check').assert;
 
-var func = function() {
+const func = function () {
     console.log("OK");
 }
 assert.pass("OK", func);

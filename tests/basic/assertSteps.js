@@ -1,7 +1,6 @@
-
 const assert = require("../../lib/checksCore").assert;
 
-var arr = [function a (next){
+const arr = [function a (next){
                 next();
             },
             function b (next){

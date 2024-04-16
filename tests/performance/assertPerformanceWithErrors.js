@@ -1,14 +1,13 @@
-
 const assert = require("../../lib/checksCore").assert;
 
 let TIMEOUT = 3000;
 
-let cfg= {
-        timeOut: TIMEOUT,
-        parallelCalls:1000,
-        testFunction: function (end){
-            end(new Error("Fake error"));
-        }
+let cfg = {
+    timeOut: TIMEOUT,
+    parallelCalls: 1000,
+    testFunction: function (end) {
+        end(new Error("Fake error"));
+    }
 };
 
 assert.begin("Performance testing", TIMEOUT + 1000);

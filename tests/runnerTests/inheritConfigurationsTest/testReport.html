@@ -9,10 +9,11 @@
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
     <style>
-        body{
+        body {
             background-color: #F8F8F8;
         }
-        div#title{
+
+        div#title {
             background-color: white;
             border-bottom: #DDD 2px solid;
             text-align: center;
@@ -21,32 +22,38 @@
             font-size: 24px;
             color: #666;
         }
-        #report-head .container{
+
+        #report-head .container {
             padding-top: 30px;
             padding-bottom: 30px;
         }
-        div.panel{
+
+        div.panel {
             border: #DDD 1px solid;
             background-color: white;
             min-height: 200px;
         }
-        div.panel.col{
+
+        div.panel.col {
             padding: 0;
             margin: 0 5px;
         }
-        div.label{
+
+        div.label {
             text-align: center;
             position: relative;
             top: -12px;
         }
-        .label span{
+
+        .label span {
             text-transform: uppercase;
             border-radius: 15px;
             padding: 2px 10px;
             border: #ddd 1px solid;
             background-color: white;
         }
-        div[id$="-value"]{
+
+        div[id$="-value"] {
             font-family: sans-serif;
             font-size: 32px;
             color: #666;
@@ -54,61 +61,77 @@
             top: 6px;
             position: relative;
         }
-        div[id$="-icon"]{
+
+        div[id$="-icon"] {
             min-height: 100px;
             background-color: #F8F8F8;
             margin: 0;
             text-align: center;
             padding-top: 20px;
         }
-        div[id$="-icon"] .fa{
+
+        div[id$="-icon"] .fa {
             font-size: 50px;
         }
-        div#no-fails-icon{
+
+        div#no-fails-icon {
             background-color: lightcoral;
             border-color: lightcoral;
             color: white;
         }
-        div#no-fails-label span{
+
+        div#no-fails-label span {
             border-color: lightcoral;
         }
-        div#no-successes-icon{
+
+        div#no-successes-icon {
             background-color: forestgreen;
             border-color: forestgreen;
             color: white;
         }
-        div#no-successes-label span{
+
+        div#no-successes-label span {
             border-color: forestgreen;
         }
+
         /*------ tables -------*/
-        table{
+        table {
             width: 100%;
         }
-        table thead{
+
+        table thead {
             font-weight: bold;
         }
-        table td{
+
+        table td {
             line-height: 40px;
         }
+
         table thead {
             background-color: lightsteelblue;
         }
-        table tr td:first-child{
+
+        table tr td:first-child {
             min-width: 15px;
             text-align: center;
         }
-        table .fa-check{
+
+        table .fa-check {
             color: forestgreen;
         }
-        table .fa-times{
+
+        table .fa-times {
             color: lightcoral;
         }
+
         /*------ failed tables -------*/
-        table#failed-tests tbody tr{
+        table#failed-tests tbody tr {
         }
-        .collapsed{
+
+        .collapsed {
             display: none;
         }
+
         /*------ popup -------*/
         div#popup {
             position: fixed;
@@ -121,7 +144,7 @@
             background-color: rgba(0, 0, 0, 0.5);
         }
 
-        #popup .container{
+        #popup .container {
             position: relative;
             top: 20%;
             max-height: 60%;
@@ -129,7 +152,7 @@
             background-color: white;
         }
 
-        #popup-title{
+        #popup-title {
             line-height: 40px;
             background-color: lightgray;
         }
@@ -216,7 +239,7 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
 </script>
 <script>
-    function print(dataSource){
+    function print(dataSource) {
         $("#no-suites-value").text(dataSource.passed.length);
         console.log(dataSource);
         window.dataSource = dataSource;
@@ -224,27 +247,27 @@
         buildReportMainContent(dataSource);
     }
 
-    function populateReportHeader(dataSource){
+    function populateReportHeader(dataSource) {
         $("#no-suites-value").text(dataSource.suites.length);
         $("#total").text(dataSource.count);
         $("#runned").text(dataSource.runned);
         $("#no-fails-value").text(dataSource.failed.length);
-        $("#no-successes-value").text(`${(dataSource.passed.length/dataSource.count)*100}%`);
-        let duration = dataSource.endDate-dataSource.startDate;
-        duration = duration/1000;
+        $("#no-successes-value").text(`${(dataSource.passed.length / dataSource.count) * 100}%`);
+        let duration = dataSource.endDate - dataSource.startDate;
+        duration = duration / 1000;
         $("#no-duration-value").text(`${duration} sec`);
     }
 
-    function displayTests(dataSource, resultType){
+    function displayTests(dataSource, resultType) {
         let target = $(`#${resultType}-tests-table-body`);
 
-        if(dataSource[resultType].length===0){
+        if (dataSource[resultType].length === 0) {
             //if no tests are found matching resultType them hide the entire area (table)
             $(`#${resultType}-tests`).css("display", "none");
             return;
         }
 
-        for(let i=0; i<dataSource[resultType].length; i++){
+        for (let i = 0; i < dataSource[resultType].length; i++) {
             let test = dataSource[resultType][i];
             let detailsPairTable = `#passed-tests-${i}`;
             target.append(
@@ -259,19 +282,19 @@
         }
     }
 
-    function buildReportMainContent(dataSource){
+    function buildReportMainContent(dataSource) {
         displayTests(dataSource, "failed");
         displayTests(dataSource, "passed");
     }
 
-    function collapse(target){
+    function collapse(target) {
         $(target).toggleClass("collapsed");
     }
 
-    function displayTestDetails(testType, index){
+    function displayTestDetails(testType, index) {
         let popupContainer = $("#popup-content");
         test = window.dataSource[testType][index];
-        for(let i=0; i<test.result.messages.length; i++){
+        for (let i = 0; i < test.result.messages.length; i++) {
             let message = JSON.stringify(test.result.messages[i]);
             popupContainer.append(`<p>${message}</p>`);
         }
@@ -279,14 +302,22 @@
         $("#popup").css("display", "block");
     }
 
-    function closeTestDetails(event){
-        if($(event.target).attr("id") == "popup"){
+    function closeTestDetails(event) {
+        if ($(event.target).attr("id") == "popup") {
             $("#popup").css("display", "none");
             $("#popup-content").html("");
         }
     }
 </script>
 <script>
-print({"count":1,"suites":{},"passed":[],"failed":[],"startDate":1567760431004,"endDate":1567760433987,"runned":0});
+    print({
+        "count": 1,
+        "suites": {},
+        "passed": [],
+        "failed": [],
+        "startDate": 1567760431004,
+        "endDate": 1567760433987,
+        "runned": 0
+    });
 </script>
 </html>

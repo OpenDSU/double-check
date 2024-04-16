@@ -23,8 +23,8 @@ assert.callback("equalPrimitiveNegativeTest", function (cb) {
 const f1 = $$.flow.describe("equalNonPrimitiveNegativeTest", {
     action: function (cb) {
         this.cb = cb;
-        this.compareDataPrim = [[1, 2, 3], {1: 3}, new String('foo'), new String('foo')];
-        this.data = [[1, 2, 3], {1: 3}, new String('foo'), new String('foo')];
+        this.compareDataPrim = [[1, 2, 3], {1: 3}, String('foo'), String('foo')];
+        this.data = [[1, 2, 3], {1: 3}, String('foo'), String('foo')];
         for (let i = 0; i < this.compareDataPrim.length; i++) {
             assert.notEqual(this.compareDataPrim[i], this.data[i]);
         }

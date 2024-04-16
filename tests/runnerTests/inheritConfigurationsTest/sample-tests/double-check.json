@@ -1,7 +1,9 @@
 {
-    "ignore": ["*.js"],
-    "strategy": {},
-    "runs": 1,
-    "silent": false,
-    "timeout": 500
+  "ignore": [
+    "*.js"
+  ],
+  "strategy": {},
+  "runs": 1,
+  "silent": false,
+  "timeout": 500
 }

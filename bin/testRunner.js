@@ -6,12 +6,12 @@ let config = null;
 let parg = process.processedArgv;
 
 if (parg) {
-	if (parg.directory) {
-		config = {"testDirs": [path.resolve(parg.directory)]};
-	}
-	if (parg.config) {
-		config = require(parg.config);
-	}
+    if (parg.directory) {
+        config = {"testDirs": [path.resolve(parg.directory)]};
+    }
+    if (parg.config) {
+        config = require(parg.config);
+    }
 }
 
 const core = {};
@@ -21,20 +21,20 @@ const testRunner = core.testRunner;
 testRunner.start(config, callback);
 
 function callback(error, result) {
-	let exitCode = 0;
-	if (error) {
-		console.error(error);
-		exitCode = 1;
-	} else {
-		if (!result) {
-			console.log("Report and results are above, please check console!");
-		} else {
-			console.log("Finished!");
-			if (result.failed > 0) {
-				console.log("Setting exit code 1 because we have failed tests.");
-				exitCode = 1;
-			}
-		}
-	}
-	process.exit(exitCode);
+    let exitCode = 0;
+    if (error) {
+        console.error(error);
+        exitCode = 1;
+    } else {
+        if (!result) {
+            console.log("Report and results are above, please check console!");
+        } else {
+            console.log("Finished!");
+            if (result.failed > 0) {
+                console.log("Setting exit code 1 because we have failed tests.");
+                exitCode = 1;
+            }
+        }
+    }
+    process.exit(exitCode);
 }

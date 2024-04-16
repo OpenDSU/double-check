@@ -1,5 +1,5 @@
 {
-    "runs": 3,
-    "silent": true,
-    "timeout": 1000
+  "runs": 3,
+  "silent": true,
+  "timeout": 1000
 }
